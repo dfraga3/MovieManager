@@ -25,15 +25,6 @@ class MoviesController extends Controller
     }
 
 
-    /**
-     * The "splash" page
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function home() {
-        return view("welcome");
-    }
-
-
     public function delete($id)
     {
         $movie = Movie::findOrFail($id);
@@ -52,6 +43,15 @@ class MoviesController extends Controller
     {
         $movie = Movie::findOrFail($id);
         return view("movies.edit", compact("movie"));
+    }
+
+
+    /**
+     * The "splash" page
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function home() {
+        return view("welcome");
     }
 
 
