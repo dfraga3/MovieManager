@@ -3,7 +3,7 @@
 @section('content')
 <div class="panel-heading">List of Movies</div>
 <div class="panel-body">
-    <form class="form-horizontal" method="get" action="{{ url('/movies') }}" id="sortForm">
+    <form class="form-horizontal" method="get" action="{{ url('movies') }}" id="sortForm">
         <div class="form-group">
             <div class="col-md-offset-9">
                 <label for="sortBy" class="control-label">Sort By:</label>
@@ -40,11 +40,7 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12" align="center">
             <br /><br />
-            @if (Auth::guest())
-                <a href="{{ url('/login') }}" class="btn btn-primary">Login In</a>
-            @else
-                <a href="{{ route('movies.create') }}" class="btn btn-primary">Add New Movie</a>
-            @endif
+
         </div>
     </div>
 </div>
