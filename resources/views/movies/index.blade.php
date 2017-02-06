@@ -26,10 +26,6 @@
         <div class="col-xs-2 col-sm-2 col-md-2 panel-title"><strong>Length</strong></div>
         <div class="col-xs-3 col-sm-2 col-md-2 panel-title"><strong>Format</strong></div>
         <div class="col-xs-2 col-sm-2 col-md-2 panel-title"><strong>Rating</strong></div>
-        @if (Auth::guest())
-        @else
-            <div class="col-xs-2 col-sm-2 col-md-2 panel-title">Action</div>
-        @endif
     </div>
 
     @foreach($movies as $movie)
@@ -39,10 +35,6 @@
             <div class="col-xs-2 col-sm-2 col-md-2">{{ convertToHoursMins($movie->length, '%2d hr %02d m') }}</div>
             <div class="col-xs-3 col-sm-2 col-md-2">{{ displayFormat($movie->format) }}</div>
             <div class="col-xs-2 col-sm-2 col-md-2"><span class="rating-static rating-{{ $movie->rating }}0"></span></div>
-            @if (Auth::guest())
-            @else
-                <div class="col-xs-2 col-sm-2 col-md-2"><a href="{{url('/movies/'.$movie->id.'/delete')}}">delete</a></div>
-            @endif
         </div>
     @endforeach
     <div class="row">
