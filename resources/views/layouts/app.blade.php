@@ -17,6 +17,7 @@
     <link href="/css/app.css" rel="stylesheet">
 
     <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
@@ -62,9 +63,7 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ url('/logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                        <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
 
@@ -80,8 +79,19 @@
             </div>
         </nav>
 
-        @yield('content')
-    </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-2">
+                    <div class="panel panel-default">
+                        @if (Session::has('flash_message'))
+                            <div class="alert alert-success">{{ Session::get('flash_message') }}</div>
+                        @endif
+
+                        @yield('content')
+                    </div>
+                </div>
+            </div>
+        </div>
 
     <footer class="stickyfooter">
         <div class="container">
@@ -96,5 +106,6 @@
     </footer>
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+    @yield('jQuery')
 </body>
 </html>

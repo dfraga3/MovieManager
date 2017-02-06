@@ -1,31 +1,43 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <h1>{{ $movie->title }}</h1>
-        <div class="row">
-            <div class="col-xs-12 col-sm-3"><strong><a href="{{ route('movies.edit', [$movie->id]) }}">{{ $movie->title  }}</a></strong></div>
-            <div class="col-xs-3 col-sm-2"><strong>Year:</strong>   {{ $movie->year }}</div>
-            <div class="col-xs-2 col-sm-2"><strong>Length:</strong> {{ convertToHoursMins($movie->length, '%2d hr %02d m') }}</div>
-            <div class="col-xs-3 col-sm-2"><strong>Format:</strong> {{ displayFormat($movie->format) }}</div>
-            <div class="col-xs-4 col-sm-3">
-                <strong>Rating:</strong> <span class="rating-static rating-{{ $movie->rating }}0"></span>
-            </div>
-        </div>
-        <br />
-        @if (Auth::guest())
-            <div class="col-xs-12 col-sm-12 col-md-12" align="center">
-                <a href="{{ url('/login') }}" class="btn btn-primary">Login In</a>
-            </div>
-        @else
-            <div class="col-md-6 pull-left">
-                <a href="{{ route('movies.create') }}" class="btn btn-primary">Add New Movie</a>
-            </div>
-
-            <div class="col-md-4 pull-right">
-                <a href="{{ route('movies.edit', $movie->id) }}" class="btn btn-info">Edit Movies</a>
-                <a href="{{ route('movies.index') }}" class="btn btn-primary">Delete Movie</a>
-            </div>
-        @endif
+<div class="panel-heading">
+    Delete: {!! $movie->title !!}<br />
+    <div class="alert alert-danger"><strong>Are you SURE you want to delete this movie?</strong></div>
+</div>
+<div class="panel-body">
+    {!! Form::model($movie, ['class'=>'form-horizontal', 'method'=>'delete', 'action'=>['MoviesController@destroy', $movie->id]]) !!}
+    <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
+        {!! Form::label('title', 'Movie Title:', ['class'=>'col-md-4 control-label']) !!}
+        <div class="col-md-6">{{ $movie->title }}</div>
     </div>
-@stop
+
+    <div class="form-group{{ $errors->has('year') ? ' has-error' : '' }}">
+        {!! Form::label('year', 'Year Released:', ['class'=>'col-md-4 control-label']) !!}
+        <div class="col-md-6">{{ $movie->year }}</div>
+    </div>
+
+    <div class="form-group{{ $errors->has('length') ? ' has-error' : '' }}">
+        {!! Form::label('length', 'Length (mins):', ['class'=>'col-md-4 control-label']) !!}
+        <div class="col-md-6">{{ convertToHoursMins($movie->length, '%2d hr %02d m') }}</div>
+    </div>
+
+    <div class="form-group{{ $errors->has('rating') ? ' has-error' : '' }}">
+        {!! Form::label('rating', 'Rating:', ['class'=>'col-md-4 control-label']) !!}
+        <div class="col-md-6"><span class="rating-static rating-{{ $movie->rating }}0"></span></div>
+    </div>
+
+    <div class="form-group{{ $errors->has('format') ? ' has-error' : '' }}">
+        {!! Form::label('format', 'Format:', ['class'=>'col-md-4 control-label']) !!}
+        <div class="col-md-6">{{ displayFormat($movie->format) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-8 col-md-offset-4">
+            {!! Form::submit('Delete Movie', ['class'=> 'btn btn-primary', 'name'=>'Delete']) !!}
+            <a href="{{ route('movies.index') }}" class="btn btn-info">Do NOT Delete</a>
+        </div>
+    </div>
+    {!! Form::close() !!}
+</div>
+@endsection

@@ -23,6 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        session()->flash('flash_message', 'You are logged in.');
+        return redirect('movies');
     }
 }

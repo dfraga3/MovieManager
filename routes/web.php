@@ -11,10 +11,11 @@
 |
 */
 
-Route::get("/", "PagesController@home");
 Route::get('/home', 'HomeController@index');
 
+Route::get("/", "MoviesController@home");
 Route::resource("movies", "MoviesController");
+Route::get("/movies/{id}/delete", "MoviesController@delete");
 
 Auth::routes();
 
