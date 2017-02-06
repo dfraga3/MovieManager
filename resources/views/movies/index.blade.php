@@ -3,22 +3,6 @@
 @section('content')
 <div class="panel-heading">List of Movies</div>
 <div class="panel-body">
-    <form class="form-horizontal" method="get" action="{{ url('movies') }}" id="sortForm">
-        <div class="form-group">
-            <div class="col-md-offset-9">
-                <label for="sortBy" class="control-label">Sort By:</label>
-                <select name="sortBy" id="sortBy">
-                @foreach($sortOptions as $sortOption)
-                    <option value="{{ $sortOption }}" {{ $selectedSort == $sortOption ? 'selected="selected"' : '' }}>{{ $sortOption }}</option>
-                @endforeach
-                </select>
-                <select name="sortDir" id="sortDir">
-                    <option value="ASC" {{ $selectedDir == "ASC" ? 'selected="selected"' : '' }}>ASC</option>
-                    <option value="DESC" {{ $selectedDir == "DESC" ? 'selected="selected"' : '' }}>DESC</option>
-                </select>
-            </div>
-        </div>
-    </form>
 
     <div class="row">
         <div class="col-xs-12 col-sm-3 col-md-3 panel-title"><strong>Title</strong></div>
@@ -37,24 +21,8 @@
             <div class="col-xs-2 col-sm-2 col-md-2"><span class="rating-static rating-{{ $movie->rating }}0"></span></div>
         </div>
     @endforeach
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12" align="center">
-            <br /><br />
 
-        </div>
-    </div>
 </div>
 @endsection
-
-@section('jQuery')
-    <script type="text/javascript">
-        jQuery(document).ready(function() {
-            $('#sortBy, #sortDir').change(function() {
-                $("#sortForm").submit();
-            });
-        });
-    </script>
-@endsection
-
 
 
