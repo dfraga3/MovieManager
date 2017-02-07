@@ -26,17 +26,11 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+        <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name', '') }}</a>
@@ -89,24 +83,39 @@
 
                         @yield('content')
                     </div>
+                    <div class="panel-footer" id="weather"></div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <footer class="stickyfooter">
-        <div class="container">
-            <p class="text-muted credit">
+        <footer class="footer">
+            <div class="container">
+                <p class="text-muted credit">
             <span style="text-align: left; float: left">
                 <img src="{{ URL::asset('/img/FS_Cans.png') }}" height="40" width="40" />
                 &copy; 2017
             </span>
-                <span class="hidden-phone" style="text-align: right; float: right">Powered by: Cherry-Coke Zero</span>
-            </p>
-        </div>
-    </footer>
+                    <span class="hidden-phone" style="text-align: right; float: right">Powered by: Cherry-Coke Zero</span>
+                </p>
+            </div>
+        </footer>
+    </div>
+
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+    <script>
+        jQuery(document).ready(function($) {
+            $.ajax({
+                url : "http://api.wunderground.com/api/aeeff752dec45a70/geolookup/conditions/q/VA/Richmond.json",
+                dataType : "jsonp",
+                success : function(parsed_json) {
+                    var location = parsed_json['location']['city'];
+                    var temp_f = parsed_json['current_observation']['temp_f'];
+                    $("#weather").html("Current temperature in " + location + " is: " + temp_f);
+                }
+            });
+        });
+    </script>
     @yield('jQuery')
 </body>
 </html>
