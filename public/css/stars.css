@@ -21,11 +21,12 @@
 
 /* Sticky footer styles
 -------------------------------------------------- */
-body {
-  /* Margin bottom by footer height */
-  padding-top: 70px;
-}
-
+html { position: relative; min-height: 100%; }
+body { padding-top: 70px; margin-bottom: 60px; }
 .footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
   background-color: #fff;
 }
