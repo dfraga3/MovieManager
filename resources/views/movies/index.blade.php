@@ -13,8 +13,8 @@
                     @endforeach
                 </select>
                 <select name="sortDir" id="sortDir">
-                    <option value="ASC" {{ $selectedDir == "ASC" ? 'selected="selected"' : '' }}>ASC</option>
-                    <option value="DESC" {{ $selectedDir == "DESC" ? 'selected="selected"' : '' }}>DESC</option>
+                    <option value="asc" {{ $selectedDir == "asc" ? 'selected="selected"' : '' }}>ASC</option>
+                    <option value="desc" {{ $selectedDir == "desc" ? 'selected="selected"' : '' }}>DESC</option>
                 </select>
             </div>
         </div>
