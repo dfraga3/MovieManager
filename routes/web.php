@@ -11,7 +11,7 @@
 |
 */
 
-Route::get("/", "MoviesController@home");
+Route::get("/", "PagesController@home");
 
 Route::get('/home', 'HomeController@index');
 
