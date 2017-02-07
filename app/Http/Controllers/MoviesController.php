@@ -53,8 +53,8 @@ class MoviesController extends Controller
     public function index(Request $request)
     {
         $sortOptions = ['Title','Year','Length','Format','Rating'];
-        $selectedSort = $request->input('sortBy', 'Title');
-        $selectedDir = $request->input('sortDir', 'ASC');
+        $selectedSort = strtolower($request->input('sortBy', 'title'));
+        $selectedDir = strtolower($request->input('sortDir', 'ASC'));
         $movies = Movie::orderby($selectedSort, $selectedDir)->get();
         return view('movies.index', compact('movies', 'sortOptions', 'selectedSort', 'selectedDir'));
     }

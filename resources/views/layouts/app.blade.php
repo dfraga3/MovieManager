@@ -11,17 +11,17 @@
     <title>{{ config('app.name', '') }}</title>
 
     <!-- Styles -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
     <link rel="stylesheet" href="{{ URL::asset('/css/stars.css') }}" />
-    <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet" />
 
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>
-        window.Laravel = {!! json_encode([
+        window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
-        ]) !!};
+        ]); ?>
     </script>
 </head>
 <body>
@@ -92,6 +92,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
     <footer class="stickyfooter">
         <div class="container">

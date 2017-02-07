@@ -3,13 +3,13 @@
 @section('content')
 <div class="panel-heading">List of Movies</div>
 <div class="panel-body">
-    <form class="form-horizontal" method="get" action="{{ url('/movies') }}" id="sortForm">
+    <form class="form-horizontal" method="get" action="{{ url('movies') }}" id="sortForm">
         <div class="form-group">
             <div class="col-md-offset-9">
                 <label for="sortBy" class="control-label">Sort By:</label>
                 <select name="sortBy" id="sortBy">
                     @foreach($sortOptions as $sortOption)
-                        <option value="{{ $sortOption }}" {{ $selectedSort == $sortOption ? 'selected="selected"' : '' }}>{{ $sortOption }}</option>
+                        <option value="{{ $sortOption }}" {{ $selectedSort == strtolower($sortOption) ? 'selected="selected"' : '' }}>{{ $sortOption }}</option>
                     @endforeach
                 </select>
                 <select name="sortDir" id="sortDir">
