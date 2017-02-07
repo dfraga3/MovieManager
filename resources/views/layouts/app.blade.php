@@ -13,8 +13,8 @@
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="{{ URL::asset('/css/stars.css') }}" />
     <link href="/css/app.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ URL::asset('/css/stars.css') }}" />
 
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
